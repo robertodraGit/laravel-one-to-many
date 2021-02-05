@@ -11,4 +11,8 @@ class Employee extends Model
         'lastname',
         'birthdate'
     ];
+
+    public function tasks() {
+        return $this -> hasMany(Task::class);
+    }
 }
