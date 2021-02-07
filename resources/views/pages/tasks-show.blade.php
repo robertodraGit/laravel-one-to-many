@@ -2,8 +2,8 @@
 
 @section('main')
     
-    {{$task -> name}} <br>
-    {{$task -> lastname}}
+    {{$task -> title}} <br>
+    {{$task -> description}}
 
     @foreach ($task -> types as $type)
         <li>
