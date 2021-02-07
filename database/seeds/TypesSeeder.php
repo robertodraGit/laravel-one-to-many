@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Type;
+use App\Task;
 
 class TypesSeeder extends Seeder
 {
