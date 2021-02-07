@@ -17,7 +17,7 @@ class CreateTypesTable extends Migration
             $table->id();
 
             $table -> string('name', 64) -> unique();
-            $table -> string('type', 64);
+            $table -> string('description', 64);
 
             $table->timestamps();
         });
