@@ -13,5 +13,7 @@
 <a href="{{route('emps-index')}}">Employees Index</a> 
 <br>
 <a href="{{route('tasks-index')}}">Tasks Index</a>
+<br>
+<a href="{{route('types-index')}}">Types Index</a>
     
 @endsection

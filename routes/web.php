@@ -13,3 +13,7 @@ Route::get('/emps/{id}', 'MainController@empShow') -> name('emps-show');
 // tasks routes
 Route::get('/tasks', 'MainController@taskIndex') -> name('tasks-index');
 Route::get('/task/{id}', 'MainController@taskShow') -> name('tasks-show');
+
+// types routes
+Route::get('/types', 'MainController@typeIndex') -> name('types-index');
+Route::get('/type/{id}', 'MainController@typeShow') -> name('types-show');
