@@ -13,10 +13,10 @@ class TypesSeeder extends Seeder
      */
     public function run()
     {
-        factory(Type::class, 30) -> create()
+        factory(Type::class, 10) 
+        -> create()
         -> each(function($type) {
-            $tasks = Task::inRandomOrder()
-            -> limit(1, 5) -> get();
+            $tasks = Task::inRandomOrder() -> limit(1, 5) -> get();
             $type -> tasks() -> attach($tasks);
         });
     }

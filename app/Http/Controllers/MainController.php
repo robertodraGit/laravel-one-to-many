@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Employee;
 use App\Task;
 use App\Type;
+use App\Employee;
+
 
 class MainController extends Controller
 {
@@ -33,6 +34,35 @@ class MainController extends Controller
     public function taskShow($id) {
         $task = Task::findOrFail($id);
         return view('pages.tasks-show', compact('task'));
+    }
+
+    public function taskCreate() {
+        $emps = Employee::all();
+        $types = Type::all();
+        return view('pages.task-create', compact('emps', 'types'));
+    }
+
+    public function taskStore(Request $request) {
+
+        $data = $request -> all();
+
+        $emp = Employee::findOrFail($data['employee_id']);
+        $task = Task::make($request -> all());
+        $task -> employee() -> associate($emp);
+        $task -> save();
+
+        $types = Type::findOrFail($data['types']);
+        $task -> types() -> attach($types);
+
+        dd($task);
+    }
+
+    public function taskEdit($id) {
+        $task = Task::findOrFail($id);
+        $emps = Employee::all();
+        $types = Type::all();
+
+        return view('pages.task-edit', compact('task', 'emps', 'types'));
     }
 
     // TYPES FUNCTIONS
