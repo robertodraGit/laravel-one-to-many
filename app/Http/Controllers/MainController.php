@@ -65,6 +65,10 @@ class MainController extends Controller
         return view('pages.task-edit', compact('task', 'emps', 'types'));
     }
 
+    public function taskUpdate(Request $request, $id) {
+        //
+    }
+
     // TYPES FUNCTIONS
 
     public function typeIndex() {

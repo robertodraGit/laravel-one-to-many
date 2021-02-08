@@ -43,15 +43,20 @@
                 type="checkbox" 
                 value='{{ $type -> id }}'
 
-                @foreach ($task -> types as $tt)
+                {{-- @foreach ($task -> types as $tt)
                     @if ($tt -> id == $type -> id)
                         checked
                     @endif
                 @endforeach
-                
+                 --}}
+
                 {{-- @if (in_array(id, $task -> types) == in_array(id, $type))
                     checked
                 @endif --}}
+
+                @if ($task -> types -> contains($type -> id))
+                    checked
+                @endif
                 > 
                     {{ $type -> name }} <br>
         @endforeach
