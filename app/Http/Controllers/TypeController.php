@@ -55,7 +55,6 @@ class TypeController extends Controller
     }
 
     public function typeUpdate(Request $request, $id) {
-
         $data = $request -> all();
 
         Validator::make($data, [

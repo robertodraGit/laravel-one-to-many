@@ -83,7 +83,7 @@ class TaskController extends Controller
         $task -> employee() -> associate($emp);
         $task -> save();
 
-        $types = Typology::findOrFail($data['types']); 
+        $types = Type::findOrFail($data['types']); 
 
         $task -> types() -> sync($types);
 

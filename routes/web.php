@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.home');
-});
+}) -> name('home');
 
 // emps routes
 Route::get('/emps', 'EmployeeController@empIndex') 
@@ -17,6 +17,8 @@ Route::post('/storeEmployee', 'EmployeeController@empStore')
     -> name('emps-store');
 Route::get('/emps/edit/{id}', 'EmployeeController@empEdit') 
     -> name('emps-edit');
+Route::post("/emps/update/{id}", "EmployeeController@empUpdate") 
+    -> name("emps-update");
 
 // tasks routes
 Route::get('/tasks', 'TaskController@taskIndex') 
@@ -29,6 +31,8 @@ Route::post('/storeTask', 'TaskController@taskStore')
     -> name('tasks-store');
 Route::get('/tasks/edit/{id}', 'TaskController@taskEdit') 
     -> name('tasks-edit');
+Route::post("/tasks/update/{id}", "TaskController@taskUpdate") 
+    -> name("tasks-update");
 
 // types routes
 Route::get('/types', 'TypeController@typeIndex')    
@@ -41,3 +45,5 @@ Route::post('/storeType', 'TypeController@typeStore')
     -> name('types-store');
 Route::get('/types/edit/{id}', 'TypeController@typeEdit') 
     -> name('types-edit');
+Route::post("/types/update/{id}", "TypeController@typeUpdate") 
+    -> name("types-update");

@@ -29,6 +29,7 @@ class EmployeeController extends Controller
     }
 
     public function empStore(Request $request) {
+        $data = $request -> all();
 
         Validator::make($data, [
 
