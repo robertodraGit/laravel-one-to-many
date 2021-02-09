@@ -41,20 +41,21 @@ class TaskController extends Controller
             'title' => 'required|min:5|max:64',
             'description' => 'required|min:20|max:200',
             'priority' => 'required|numeric|between:1,5',
-            'employee_id' => 'required'
-            'types' =>
+            'employee_id' => 'required',
+            'types' => 'required',
 
-        ])
+        ]) -> validate(); // validation
 
         $emp = Employee::findOrFail($data['employee_id']);
-        $task = Task::make($request -> all());
+        $task = Task::make($data);
         $task -> employee() -> associate($emp);
         $task -> save();
 
         $types = Type::findOrFail($data['types']);
         $task -> types() -> attach($types);
 
-        dd($task);
+        // dd($task);
+        return redirect() -> route('tasks-index');
     }
 
     public function taskEdit($id) {
