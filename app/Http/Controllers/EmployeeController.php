@@ -52,8 +52,18 @@ class EmployeeController extends Controller
 
     public function empUpdate(Request $request, $id) {
 
+        $data = $request -> all();
+
+        Validator::make($data, [
+
+            'name' => 'required|min:4|max:64',
+            'lastname' => 'required|min:4|max:64',
+            'birthdate' => 'required|date'
+
+        ]) -> validate();
+
         $emp = Employee::findOrFail($id);
-        $emp -> update($request -> all());
+        $emp -> update($data);
         
         return redirect() -> route('emps-show', $emp -> id);
     }

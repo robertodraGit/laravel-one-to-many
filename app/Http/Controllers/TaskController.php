@@ -25,6 +25,7 @@ class TaskController extends Controller
     }
 
     public function taskCreate() {
+
         $emps = Employee::all();
         $types = Type::all();
         return view('pages.tasks.create', compact('emps', 'types'));
@@ -39,10 +40,8 @@ class TaskController extends Controller
         Validator::make($data, [
 
             'title' => 'required|min:5|max:64',
-            'description' => 'required|min:20|max:200',
-            'priority' => 'required|numeric|between:1,5',
-            'employee_id' => 'required',
-            'types' => 'required',
+            'description' => 'required|min:10|max:200',
+            'priority' => 'required|numeric|between:1,5'
 
         ]) -> validate(); // validation
 
@@ -67,6 +66,27 @@ class TaskController extends Controller
     }
 
     public function taskUpdate(Request $request, $id) {
-        //
+
+        $data = $request -> all();
+
+        Validator::make($data, [
+
+            'title' => 'required|min:5|max:64',
+            'description' => 'required|min:10|max:200',
+            'priority' => 'required|numeric|between:1,5'
+
+        ]) -> validate();
+
+        $emp = Employee::findOrfail($data["employee_id"]); 
+        $task = Task::findOrFail($id);
+        $task -> update($data);
+        $task -> employee() -> associate($emp);
+        $task -> save();
+
+        $types = Typology::findOrFail($data['types']); 
+
+        $task -> types() -> sync($types);
+
+        return redirect() -> route("tasks-show", $task -> id);
     }
 }
