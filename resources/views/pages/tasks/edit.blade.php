@@ -2,7 +2,7 @@
 
 @section('main')
     
-    <h1>Edit task</h1>
+    <h1>Edit task {{ $task -> id }}</h1>
 
     <form action="{{ route('tasks-update', $task -> id) }}" method="POST">
 

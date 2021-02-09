@@ -66,5 +66,7 @@ class TypeController extends Controller
 
         $type = Type::findOrFail($id);
         $type -> update($data);
+
+        return redirect() -> route("types-show", $type -> id);
     }
 }
